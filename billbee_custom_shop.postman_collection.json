@@ -1,0 +1,437 @@
+{
+	"info": {
+		"_postman_id": "1ae4d4b0-3ace-43a1-bfa8-a417db2ceb62",
+		"name": "Billbee Custom Shop",
+		"description": "Usage:\n\nSet the Variables:\n- `shop_endpoint`: The URL to the API Endpoint\n- `auth_user`:  If BasicAuth is used -> the username\n- `auth_password`: If BasicAuth is used -> the password\n- `auth_security_key`:  If Token Authentication is used, the Security Key\n ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "GetOrders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{shop_endpoint}}?Action=GetOrders&Key={{auth_calculated_key}}&StartDate&Page={{paging_page}}&PageSize={{paging_page_size}}",
+							"host": [
+								"{{shop_endpoint}}"
+							],
+							"query": [
+								{
+									"key": "Action",
+									"value": "GetOrders"
+								},
+								{
+									"key": "Key",
+									"value": "{{auth_calculated_key}}",
+									"description": "The calculated secret hash"
+								},
+								{
+									"key": "StartDate",
+									"value": null,
+									"description": "The min order date for new or the modified date for modified orders."
+								},
+								{
+									"key": "Page",
+									"value": "{{paging_page}}",
+									"description": "The requested page, starts at 1"
+								},
+								{
+									"key": "PageSize",
+									"value": "{{paging_page_size}}",
+									"description": "The requested size per page"
+								}
+							]
+						},
+						"description": "Should return the orders which are created or modified since the `StartDate` parameter."
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{shop_endpoint}}?Action=GetOrder&Key={{auth_calculated_key}}&OrderId=",
+							"host": [
+								"{{shop_endpoint}}"
+							],
+							"query": [
+								{
+									"key": "Action",
+									"value": "GetOrder"
+								},
+								{
+									"key": "Key",
+									"value": "{{auth_calculated_key}}",
+									"description": "The calculated secret hash"
+								},
+								{
+									"key": "OrderId",
+									"value": "",
+									"description": "The id of the order which was received successfully"
+								}
+							]
+						},
+						"description": "Return the order with the given id"
+					},
+					"response": []
+				},
+				{
+					"name": "AckOrder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"OrderId\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{shop_endpoint}}?Action=AckOrder&Key={{auth_calculated_key}}",
+							"host": [
+								"{{shop_endpoint}}"
+							],
+							"query": [
+								{
+									"key": "Action",
+									"value": "AckOrder"
+								},
+								{
+									"key": "Key",
+									"value": "{{auth_calculated_key}}",
+									"description": "The calculated secret hash"
+								}
+							]
+						},
+						"description": "Billbee calls this method to acknowledge that the order was successfully received."
+					},
+					"response": []
+				},
+				{
+					"name": "SetOrderState",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"OrderId\": null,\n    \"NewStateId\": null,\n    \"Comment\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{shop_endpoint}}?Action=SetOrderState&Key={{auth_calculated_key}}",
+							"host": [
+								"{{shop_endpoint}}"
+							],
+							"query": [
+								{
+									"key": "Action",
+									"value": "SetOrderState"
+								},
+								{
+									"key": "Key",
+									"value": "{{auth_calculated_key}}",
+									"description": "The calculated secret hash"
+								}
+							]
+						},
+						"description": "Sets the state of an order."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a339130c-d956-42a6-9657-f6a3e4ab73dc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fa2ecb7-eca0-45b9-b44a-aad8341cd5af",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "GetProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{shop_endpoint}}?Action=GetProducts&Key={{auth_calculated_key}}&Page={{paging_page}}&PageSize={{paging_page_size}}",
+							"host": [
+								"{{shop_endpoint}}"
+							],
+							"query": [
+								{
+									"key": "Action",
+									"value": "GetProducts"
+								},
+								{
+									"key": "Key",
+									"value": "{{auth_calculated_key}}",
+									"description": "The calculated secret hash"
+								},
+								{
+									"key": "Page",
+									"value": "{{paging_page}}",
+									"description": "The requested page, starts at 1"
+								},
+								{
+									"key": "PageSize",
+									"value": "{{paging_page_size}}",
+									"description": "The requested size per page"
+								}
+							]
+						},
+						"description": "Should return the products"
+					},
+					"response": []
+				},
+				{
+					"name": "GetProduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{shop_endpoint}}?Action=GetProduct&Key={{auth_calculated_key}}&ProductId=",
+							"host": [
+								"{{shop_endpoint}}"
+							],
+							"query": [
+								{
+									"key": "Action",
+									"value": "GetProduct"
+								},
+								{
+									"key": "Key",
+									"value": "{{auth_calculated_key}}",
+									"description": "The calculated secret hash"
+								},
+								{
+									"key": "ProductId",
+									"value": "",
+									"description": "The id of the product"
+								}
+							]
+						},
+						"description": "Returns a single product by the id"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ShippingProfiles",
+			"item": [
+				{
+					"name": "GetShippingProfiles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{shop_endpoint}}?Action=GetShippingProfiles&Key={{auth_calculated_key}}",
+							"host": [
+								"{{shop_endpoint}}"
+							],
+							"query": [
+								{
+									"key": "Action",
+									"value": "GetShippingProfiles"
+								},
+								{
+									"key": "Key",
+									"value": "{{auth_calculated_key}}",
+									"description": "The calculated secret hash"
+								}
+							]
+						},
+						"description": "Should return all available shipping profiles"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "StockSync",
+			"item": [
+				{
+					"name": "SetStock",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ProductId\": null,\n\t\"AvailableStock\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{shop_endpoint}}?Action=SetStock&Key={{auth_calculated_key}}",
+							"host": [
+								"{{shop_endpoint}}"
+							],
+							"query": [
+								{
+									"key": "Action",
+									"value": "SetStock"
+								},
+								{
+									"key": "Key",
+									"value": "{{auth_calculated_key}}",
+									"description": "The calculated secret hash"
+								}
+							]
+						},
+						"description": "Should set the current stock of the given product"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{auth_password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{auth_user}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "55ed38b8-c5de-4f3e-9100-8aeb13bd0626",
+				"type": "text/javascript",
+				"exec": [
+					"let secretKey = pm.variables.get(\"auth_security_key\");",
+					"let shortenedTimestamp = Math.floor(Date.now() / 1000).toString().substr(0, 7)",
+					"",
+					"let words = CryptoJS.HmacSHA256(secretKey, shortenedTimestamp);",
+					"let hash = CryptoJS.enc.Hex.stringify(words);",
+					"let encodedHash = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(hash));",
+					"let finalKey = encodedHash.replace(/[\\+=\\/]/g, '');",
+					"",
+					"pm.collectionVariables.set(\"auth_calculated_key\", finalKey);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0965ccc8-43fc-427c-9a1c-6282c3d36899",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b5a2265f-b703-4ec0-b4c4-a874a9ff3a6c",
+			"key": "shop_endpoint",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "1290e925-a7a9-47b8-a3df-22c5eabdc273",
+			"key": "auth_user",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "3a7931b8-44af-42e9-8f3e-338662dd734f",
+			"key": "auth_password",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "575f2a75-dffb-4230-861d-59c6ca9e61bd",
+			"key": "auth_security_key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "6bc8cda6-ccea-40c8-98cf-d9f2dbda354a",
+			"key": "paging_page",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"id": "c00efa3f-9546-40df-8361-42bef1c12e7c",
+			"key": "paging_page_size",
+			"value": "100",
+			"type": "string"
+		},
+		{
+			"id": "7cc484e0-d3af-4bca-95d1-6f36aedbf45f",
+			"key": "auth_calculated_key",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
