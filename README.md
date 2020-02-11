@@ -5,7 +5,7 @@ This repository contains a Postman collection to test your implementation of the
 ## How to use
 
 ### Download and import the Postman collection
-1. Download the [Postman cllection](./billbee_custom_shop.postman_collection.json)
+1. Download the [Postman collection](https://github.com/billbeeio/custom-shop-api-postman/raw/master/billbee_custom_shop.postman_collection.json)
 2. Open Postman and click `File > Import...` or press `ctrl + o`
 3. Select the downloaded .json file.
 
