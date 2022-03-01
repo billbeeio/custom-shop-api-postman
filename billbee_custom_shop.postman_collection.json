@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1ae4d4b0-3ace-43a1-bfa8-a417db2ceb62",
+		"_postman_id": "55a10c82-6673-48bf-88ad-70207f2e5fb1",
 		"name": "Billbee Custom Shop",
 		"description": "Usage:\n\nSet the Variables:\n- `shop_endpoint`: The URL to the API Endpoint\n- `auth_user`:  If BasicAuth is used -> the username\n- `auth_password`: If BasicAuth is used -> the password\n- `auth_security_key`:  If Token Authentication is used, the Security Key\n ",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -94,8 +94,14 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"OrderId\": null\n}",
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "OrderId",
+									"value": "1234",
+									"type": "text"
+								}
+							],
 							"options": {
 								"raw": {
 									"language": "json"
@@ -136,8 +142,24 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"OrderId\": null,\n    \"NewStateId\": null,\n    \"Comment\": null\n}",
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "OrderId",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "NewStateId",
+									"value": "Versendet",
+									"type": "text"
+								},
+								{
+									"key": "Comment",
+									"value": "",
+									"type": "text"
+								}
+							],
 							"options": {
 								"raw": {
 									"language": "json"
@@ -170,7 +192,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "a339130c-d956-42a6-9657-f6a3e4ab73dc",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -180,15 +201,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5fa2ecb7-eca0-45b9-b44a-aad8341cd5af",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Products",
@@ -260,8 +279,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "ShippingProfiles",
@@ -292,8 +310,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "StockSync",
@@ -311,8 +328,19 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"ProductId\": null,\n\t\"AvailableStock\": null\n}",
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "ProductId",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "AvailableStock",
+									"value": "1234",
+									"type": "text"
+								}
+							],
 							"options": {
 								"raw": {
 									"language": "json"
@@ -340,8 +368,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
 	],
 	"auth": {
@@ -363,7 +390,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "55ed38b8-c5de-4f3e-9100-8aeb13bd0626",
 				"type": "text/javascript",
 				"exec": [
 					"let secretKey = pm.variables.get(\"auth_security_key\");",
@@ -381,7 +407,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "0965ccc8-43fc-427c-9a1c-6282c3d36899",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -391,47 +416,39 @@
 	],
 	"variable": [
 		{
-			"id": "b5a2265f-b703-4ec0-b4c4-a874a9ff3a6c",
 			"key": "shop_endpoint",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "1290e925-a7a9-47b8-a3df-22c5eabdc273",
 			"key": "auth_user",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "3a7931b8-44af-42e9-8f3e-338662dd734f",
 			"key": "auth_password",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "575f2a75-dffb-4230-861d-59c6ca9e61bd",
 			"key": "auth_security_key",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "6bc8cda6-ccea-40c8-98cf-d9f2dbda354a",
 			"key": "paging_page",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "c00efa3f-9546-40df-8361-42bef1c12e7c",
 			"key": "paging_page_size",
 			"value": "100",
 			"type": "string"
 		},
 		{
-			"id": "7cc484e0-d3af-4bca-95d1-6f36aedbf45f",
 			"key": "auth_calculated_key",
 			"value": "",
 			"type": "string"
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
