@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "55a10c82-6673-48bf-88ad-70207f2e5fb1",
+		"_postman_id": "903d44ac-bac5-4666-b7bf-774a2c562bcf",
 		"name": "Billbee Custom Shop",
 		"description": "Usage:\n\nSet the Variables:\n- `shop_endpoint`: The URL to the API Endpoint\n- `auth_user`:  If BasicAuth is used -> the username\n- `auth_password`: If BasicAuth is used -> the password\n- `auth_security_key`:  If Token Authentication is used, the Security Key\n ",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -31,7 +31,7 @@
 								},
 								{
 									"key": "StartDate",
-									"value": null,
+									"value": "",
 									"description": "The min order date for new or the modified date for modified orders."
 								},
 								{
@@ -85,28 +85,17 @@
 					"name": "AckOrder",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
 									"key": "OrderId",
 									"value": "1234",
+									"description": "The id of the order",
 									"type": "text"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{shop_endpoint}}?Action=AckOrder&Key={{auth_calculated_key}}",
@@ -133,38 +122,41 @@
 					"name": "SetOrderState",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
 									"key": "OrderId",
-									"value": "",
+									"value": "1234",
+									"description": "The Id of the order",
+									"type": "text"
+								},
+								{
+									"key": "Comment",
+									"value": "A Comment",
+									"description": "A optional comment",
 									"type": "text"
 								},
 								{
 									"key": "NewStateId",
 									"value": "Versendet",
+									"description": "[OBSOLETE] Use NewStateName instead",
 									"type": "text"
 								},
 								{
-									"key": "Comment",
-									"value": "",
+									"key": "NewStateName",
+									"value": "Versendet",
+									"description": "The name of the new state",
+									"type": "text"
+								},
+								{
+									"key": "NewStateTypeId",
+									"value": "4",
+									"description": "The id of the new state",
 									"type": "text"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{shop_endpoint}}?Action=SetOrderState&Key={{auth_calculated_key}}",
@@ -319,33 +311,23 @@
 					"name": "SetStock",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
 									"key": "ProductId",
 									"value": "1234",
+									"description": "The id of the product",
 									"type": "text"
 								},
 								{
 									"key": "AvailableStock",
-									"value": "1234",
+									"value": "12342",
+									"description": "The new stock amount",
 									"type": "text"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{shop_endpoint}}?Action=SetStock&Key={{auth_calculated_key}}",
