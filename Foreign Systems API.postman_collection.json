@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "d220beec-d7eb-45fd-bf65-2c09fe4ed195",
+		"name": "Foreign Systems API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10916079"
+	},
+	"item": [
+		{
+			"name": "Channel",
+			"item": [
+				{
+					"name": "GetOrderList",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"GetOrderList\",\n    \"payload\": {\n        \"startDate\": \"2024-01-01T00:00:00\",\n        \"page\": 1,\n        \"perPage\": 10\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						},
+						"description": "Bei diesem Aufruf wird eine Liste der Bestellungen vom Fremdsystem abefragt.\n\n## Payload\n\n| Feld | Beschreibung |\n| --- | --- |\n| startDate | Dieses Datum gibt an, welche Bestellungen (aktualisiert / geändert seit Datum) geliefert werden sollen |\n| page | Seite |\n| perPage | Seitengröße |"
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderById",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"GetOrderById\",\n    \"payload\": \"5709406\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						},
+						"description": "Bei diesem Aufruf wird eine konkrete Bestellung anhand der ID abgefragt\n\n## Payload\nID der Bestellung"
+					},
+					"response": []
+				},
+				{
+					"name": "SetOrderState",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"SetOrderState\",\n    \"payload\": {\n        \"id\": \"5709406\",\n        \"status\": 4,\n        \"changeDate\": \"2024-07-31T09:00:00+02:00\",\n        \"paidAmount\": 12.37,\n        \"notificationMessage\": {\n            \"subject\": \"Bestellung Versendet\",\n            \"body\": \"Hallo\\nDeine Bestellung 5709406 wurde versendet.\"\n        },\n        \"shipments\": [\n            {\n                \"shippingId\": \"1234\",\n                \"carrier\": \"dhl\",\n                \"shipperName\": \"DHL\",\n                \"trackingUrl\": \"https://domain.tld/track=1234\",\n                \"shippingProduct\": \"Paket\",\n                \"originCountryCode\": \"DE\",\n                \"originCountryCodeIso3\": \"DEU\",\n                \"originCity\": \"Berlin\",\n                \"originZipCode\": \"10176\",\n                \"isReturnShipment\": false,\n                \"createdAt\": \"2024-07-31T09:00:00\"\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						},
+						"description": "Bei diesem Aufruf wird der Status für eine konkrete Bestellung übertragen.\n\n## Payload\n\n| Feld | Beschreibung |\n| --- | --- |\n| id | Die ID der Bestellung |\n| status | Der neue Status der Bestellung |\n| changeDate | Das Datum, wann der Status geändert wurde |\n| paidAmount | Der bereits bezahlte Betrag dieser Bestellung |\n| notificationMessage | Eine optionale Nachricht, falls der Status im Zuge einer Automatisierung geändert wurde. |\n| shipments | Eine Liste von Sendungen, welche zu der Bestellung gehören |"
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductById",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"GetProductById\",\n    \"payload\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						},
+						"description": "Bei diesem Aufruf wird ein einzelner Artikel anhand dessen ID abgefragt.\n\n## Payload\nDie ID des Artikels"
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductList",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"GetProductList\",\n    \"payload\": {\n        \"page\": 1,\n        \"perPage\": 20\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						},
+						"description": "Bei diesem Aufruf wird eine Liste der Artikel vom Fremdsystem abefragt.\n\n## Payload\n\n| Feld | Beschreibung |\n| --- | --- |\n| page | Seite |\n| perPage | Seitengröße |"
+					},
+					"response": []
+				}
+			],
+			"description": "In diesem Ordner sind alle Requests zu finden, welche mit dem Channel Sub System zusammenhängen"
+		},
+		{
+			"name": "Get Provisioning Details",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"action\": \"GetProvisioningDetails\",\n    \"payload\": \"https://domain.tld/?key=1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				},
+				"description": "Fordert die ProvisioningDetails des Fremdsystems an.\n\n## Payload\n\nDie URL, zu der die ProvisioningDetails geposted werden sollen."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
